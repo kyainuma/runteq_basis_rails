@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def top
-    render :top   
+    render :top
   end
 end
