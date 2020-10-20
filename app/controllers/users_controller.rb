@@ -27,9 +27,11 @@ class UsersController < ApplicationController
     # respond_to do |format|
     if @user.save
       redirect_to(login_path, notice: 'User was successfully created')
+      flash[:succes] = 'ユーザー登録が完了しました'
       # format.html { redirect_to @user, notice: 'User was successfully created.' }
       # format.json { render :show, status: :created, location: @user }
     else
+      flash[:danger] = 'ユーザー登録に失敗しました'
       render :new
       # format.html { render :new }
       # format.json { render json: @user.errors, status: :unprocessable_entity }
