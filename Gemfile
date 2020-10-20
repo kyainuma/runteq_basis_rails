@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
+gem 'rails-i18n', '~> 5.1'
+
 gem 'pry-byebug', group: :development
 gem 'sorcery'
 
