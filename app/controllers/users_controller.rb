@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
     # respond_to do |format|
     if @user.save
+      # redirect_to login_path, success: t('.success')
       redirect_to login_path, success: t('.success')
       # format.html { redirect_to @user, notice: 'User was successfully created.' }
       # format.json { render :show, status: :created, location: @user }
