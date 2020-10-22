@@ -7,6 +7,10 @@ gem 'draper'
 
 gem 'rails-i18n', '~> 5.1'
 
+group :development, :test do
+  gem 'faker'
+end
+
 gem 'pry-byebug', group: :development
 gem 'sorcery'
 
