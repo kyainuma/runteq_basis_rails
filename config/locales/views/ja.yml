@@ -8,7 +8,7 @@ ja:
       title: 'ユーザー登録'
       to_login_page: 'ログインページへ'
     create:
-      success: 'ユーザ登録が完了しました'
+      success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
   user_sessions:
     new:
