@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2020_10_22_122222) do
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
+    t.string "last_name"
+    t.string "first_name"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
