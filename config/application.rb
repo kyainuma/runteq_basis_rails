@@ -45,5 +45,8 @@ module RunteqNormal
 
     # Please use `Rails.root.join('path/to')` instead.と言われたら、下記のようにする
     # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
+    # タイムゾーンを日本時間に設定
+    config.time_zone = 'Asia/Tokyo'
   end
 end

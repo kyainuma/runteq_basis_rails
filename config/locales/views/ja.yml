@@ -3,6 +3,9 @@ ja:
     login: 'ログイン'
     register: '登録'
     logout: 'ログアウト'
+  time:
+    formats:
+      default: '%Y/%m/%d %H:%M'
   users:
     new:    
       title: 'ユーザー登録'
