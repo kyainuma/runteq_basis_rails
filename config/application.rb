@@ -43,10 +43,7 @@ module RunteqNormal
     # i18nのPATH　以下の記述を追記する(設定必須)
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
-    # アプリケーションが対応している言語のホワイトリスト
-    config.i18n.available_locales = %i[ja en]
-
     # Please use `Rails.root.join('path/to')` instead.と言われたら、下記のようにする
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end

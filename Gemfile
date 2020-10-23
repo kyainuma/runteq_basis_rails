@@ -5,13 +5,13 @@ ruby '2.6.4'
 
 gem 'draper'
 
-gem 'rails-i18n', '~> 5.1'
+gem 'rails-i18n', '~> 5.1.3'
 
 group :development, :test do
   gem 'faker'
+  gem 'pry-byebug'
 end
 
-gem 'pry-byebug', group: :development
 gem 'sorcery'
 
 gem 'bootstrap', '~> 4.3.1'
