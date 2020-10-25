@@ -2,6 +2,6 @@ class BoardsController < ApplicationController
   def top; end
 
   def index
-    @boards = Board.all
+    @boards = Board.all.includes(:user)
   end
 end
