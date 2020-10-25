@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
   def edit; end
 
   def create
