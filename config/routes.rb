@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
-  get  'static_pages/top'
-  resources :users
+
   get  'login'  => 'user_sessions#new', :as => :login
   post 'login'  => 'user_sessions#create'
   post 'logout' => 'user_sessions#destroy', :as => :logout
-  get 'boards' => 'boards#index'
+
+  resources :users,  only: %i[new create]
+  resources :boards, only: %i[index new create]
 end
