@@ -10,7 +10,7 @@
   </div>
   <div class="form-group">
     <%= f.label :board_image %>
-    <%= f.file_field :board_image, id: :board_image, class: 'form-control' %>
+    <%= f.file_field :board_image, class: 'form-control' %>
   </div>
   <div>
     <% if @board.board_image.present? %>
@@ -33,7 +33,7 @@
         reader.readAsDataURL(input.files[0]);
         }
     }
-    $("#board_image").change(function(){
+    $("#board_board_image").change(function(){
         readURL(this);
     });
   });
