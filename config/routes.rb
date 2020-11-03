@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
   resources :users,  only: %i[new create]
-  resources :boards, only: %i[index new create]
+  resources :boards, only: %i[index new show create] do
+    resources :comments, shallow: true
+  end
 end

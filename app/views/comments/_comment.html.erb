@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+    <table id="js-table-comment" class="table">
+      <tr id="comment-25">
+        <td style="width: 60px">
+          <%= image_tag 'sample.jpg', class:"rounded-circle", width:"50", height:"50" %>
+        </td>
+        <td>
+          <h3 class="small"><%= comment.user.decorate.full_name %></h3>
+          <div id="js-comment-25">
+            <p><%= comment.body %></p>
+          </div>
+          <div style="display: none;">
+            <textarea class="form-control mb-1">コメントです</textarea>
+            <button class="btn btn-light">キャンセル</button>
+            <button class="btn btn-success">更新</button>
+          </div>
+        </td>
+
+        <td class="action">
+          <% if current_user == comment.user %>
+            <ul class="list-inline justify-content-center" style="float: right;">
+              <li class="list-inline-item">
+                <a href="#">
+                  <%= icon 'fa', 'pen' %>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <%= icon 'fas', 'trash' %>
+                </a>
+              </li>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

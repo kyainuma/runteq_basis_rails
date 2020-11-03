@@ -1,17 +1,10 @@
  <div class="col-sm-12 col-lg-4 mb-3">
    <div id="board-id-<%= board.id %>">
      <div class="card">
-       <% if board.board_image? %>
-         <%= image_tag board.board_image.url, id: :img_prev %>
-       <% else %>
-         <%= image_tag 'board_placeholder.png', id: :img_prev %>
-       <% end %>
-
+       <%= image_tag board.board_image_url, class: 'card-img-top', size: '300x200' %>
        <div class="card-body">
          <h4 class="card-title">
-           <a href="#">
-             <%= board.title %>
-           </a>
+           <%= link_to board.title, board_path(board.id) %>
          </h4>
          <div class='mr10 float-right'>
            <a href="#"><%= icon 'fas', 'trash', class: 'pr-1' %></a>

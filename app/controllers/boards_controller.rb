@@ -1,12 +1,23 @@
 class BoardsController < ApplicationController
   def top; end
 
+  def show
+    @comment = Comment.new
+
+    #@board = Board.find(params[:id])
+    #@comments = Comment.all.includes(:board).order(created_at: :desc)
+
+    @board = Board.includes(:user).find(params[:id])
+    @comments = @board.comments.includes(:user).all.order(created_at: :desc)
+ end
+
   def index
     @boards = Board.all.includes(:user).order(created_at: :desc)
   end
 
   def new
     @board = Board.new
+    @comment = Comment.new
   end
 
   def create
@@ -22,6 +33,6 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:title, :body, :board_image)
+    params.require(:board).permit(:title, :body, :board_image, :board_image_cache)
   end
 end
