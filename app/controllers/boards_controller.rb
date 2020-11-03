@@ -3,13 +3,9 @@ class BoardsController < ApplicationController
 
   def show
     @comment = Comment.new
-
-    #@board = Board.find(params[:id])
-    #@comments = Comment.all.includes(:board).order(created_at: :desc)
-
     @board = Board.includes(:user).find(params[:id])
     @comments = @board.comments.includes(:user).order(created_at: :desc)
- end
+  end
 
   def index
     @boards = Board.all.includes(:user).order(created_at: :desc)

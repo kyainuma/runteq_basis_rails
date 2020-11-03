@@ -13,10 +13,10 @@ class CommentsController < ApplicationController
     @board = Board.find(params[:board_id])
     @comments = @board.comments.includes(:user).order(created_at: :desc)
     if @comment.save
-      redirect_to  board_path(@board.id), success: t('.success')
+      redirect_to board_path(@board.id), success: t('.success')
     else
       flash.now[:danger] = t('.fail')
-      render "boards/show"
+      render 'boards/show'
     end
   end
 
