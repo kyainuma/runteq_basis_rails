@@ -8,7 +8,7 @@ class BoardsController < ApplicationController
     #@comments = Comment.all.includes(:board).order(created_at: :desc)
 
     @board = Board.includes(:user).find(params[:id])
-    @comments = @board.comments.includes(:user).all.order(created_at: :desc)
+    @comments = @board.comments.includes(:user).order(created_at: :desc)
  end
 
   def index
