@@ -34,6 +34,8 @@ ja:
       new: '掲示板作成'
     new:
       title: '掲示板作成'
+    show:
+      new: '投稿'
   comments:
     create:
       success: 'コメントを作成しました'

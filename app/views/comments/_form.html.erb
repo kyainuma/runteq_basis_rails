@@ -1,9 +1,9 @@
 <div class="row mb-3">
   <div class="col-lg-8 offset-lg-2">
-    <%= form_with(model: [@board, @comment], url: board_comments_path(@board.id), local: true) do |f| %>
-      <%= f.label :comment, for: "comment_body" %>
+    <%= form_with(model: [@board, @comment], url: board_comments_path(@board.id), local: true, id:"new_comment") do |f| %>
+      <%= f.label :'コメント', for: "comment_body" %>
       <%= f.text_area :body, class:"form-control mb-3", row:"4"%>
-      <%= f.submit class: 'btn btn-primary' %>
+      <%= f.submit (t 'boards.show.new'), class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>
