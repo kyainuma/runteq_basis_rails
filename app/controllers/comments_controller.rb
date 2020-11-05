@@ -1,28 +1,16 @@
 class CommentsController < ApplicationController
-  def index
-    @comments = Comment.all.includes(:board).order(created_at: :desc)
-  end
-
-  def new
-    @comment = Comment.new
-  end
-
   def create
-    @comment = current_user.comments.build(comment_params)
-    @comment.board_id = params[:board_id]
-    @board = Board.find(params[:board_id])
-    @comments = @board.comments.includes(:user).order(created_at: :desc)
-    if @comment.save
-      redirect_to board_path(@board.id), success: t('.success')
+    comment = current_user.comments.build(comment_params)
+    if comment.save
+      redirect_to board_path(comment.board), success: t('defaults.message.created', item: Comment.model_name.human)
     else
-      flash.now[:danger] = t('.fail')
-      render 'boards/show'
+      redirect_to board_path(comment.board), danger: t('defaults.message.not_created', item: Comment.model_name.human)
     end
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body).merge(board_id: params[:board_id])
   end
 end
