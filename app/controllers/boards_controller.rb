@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  before_action :set_board, only: %i[edit]
+
   def top; end
 
   def show
@@ -49,5 +51,9 @@ class BoardsController < ApplicationController
 
   def board_params
     params.require(:board).permit(:title, :body, :board_image, :board_image_cache)
+  end
+
+  def set_board
+    @board = current_user.boards.find(params[:id])
   end
 end
