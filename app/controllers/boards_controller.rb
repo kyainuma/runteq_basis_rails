@@ -14,7 +14,6 @@ class BoardsController < ApplicationController
   def new
     @board = Board.new
     @comment = Comment.new
-    @title = "掲示板作成"
   end
 
   def create
@@ -29,8 +28,6 @@ class BoardsController < ApplicationController
 
   def edit
     @board = Board.find(params[:id])
-    @title = "掲示板編集"
-    render 'new'
   end
 
   def update
@@ -41,6 +38,11 @@ class BoardsController < ApplicationController
       flash.now[:danger] = t('defaults.message.not_updated', item: Board.model_name.human)
       render :new
     end
+  end
+
+  def destroy
+    Board.find(params[:id]).destroy
+    redirect_to boards_path, danger: t('defaults.message.deleted', item: Board.model_name.human)
   end
   
   private
