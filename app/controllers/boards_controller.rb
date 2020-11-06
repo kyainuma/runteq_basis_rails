@@ -35,10 +35,10 @@ class BoardsController < ApplicationController
   def update
     @board = current_user.boards.build(board_params)
     if @board.save
-      redirect_to edit_board_path(@board), success: t('defaults.message.updated', item: Board.model_name.human)
+      redirect_to board_path(@board), success: t('defaults.message.updated', item: Board.model_name.human)
     else    
       flash.now[:danger] = t('defaults.message.not_updated', item: Board.model_name.human)
-      render :new
+      render :edit
     end
   end
 
