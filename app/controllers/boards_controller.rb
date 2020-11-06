@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: %i[edit]
+  before_action :set_board, only: %i[edit update destroy]
 
   def top; end
 
@@ -33,10 +33,10 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board = current_user.boards.build(board_params)
-    if @board.save
+    @board = Board.find(params[:id])
+    if @board.update(board_params)
       redirect_to board_path(@board), success: t('defaults.message.updated', item: Board.model_name.human)
-    else    
+    else
       flash.now[:danger] = t('defaults.message.not_updated', item: Board.model_name.human)
       render :edit
     end
@@ -46,7 +46,7 @@ class BoardsController < ApplicationController
     Board.find(params[:id]).destroy
     redirect_to boards_path, danger: t('defaults.message.deleted', item: Board.model_name.human)
   end
-  
+
   private
 
   def board_params
