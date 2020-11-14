@@ -43,6 +43,8 @@ ja:
       title: '掲示板詳細'
     edit:
       title: '掲示板編集'
+    bookmarks:
+      title: 'ブックマーク一覧'
   comments:
     create:
       success: 'コメントを作成しました'
