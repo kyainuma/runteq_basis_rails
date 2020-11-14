@@ -45,7 +45,6 @@ class BoardsController < ApplicationController
   end
 
   def bookmarks
-    #@boards = Bookmark.where(user_id: current_user.id)
     @boards = current_user.bookmark_boards.includes(:user)
   end
 
