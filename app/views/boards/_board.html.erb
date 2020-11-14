@@ -12,6 +12,11 @@
              <%= icon 'far', 'user' %>
              <%= board.user.decorate.full_name %>
            </li>
+           <li>
+           <% unless current_user.own?(board) %>
+             <%= render 'bookmarks/bookmark_area', board: board %>
+           <% end %>
+           </li>
            <li class="list-inline-item">
              <%= icon 'far', 'calendar' %>
              <%= l board.created_at, format: :long %>

@@ -47,3 +47,8 @@ ja:
     create:
       success: 'コメントを作成しました'
       fail: 'コメントを作成できませんでした'
+  bookmarks:
+    create:
+      success: 'ブックマークしました'
+    destroy:
+      success: 'ブックマークを外しました'
