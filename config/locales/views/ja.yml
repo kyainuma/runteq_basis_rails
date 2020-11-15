@@ -35,7 +35,7 @@ ja:
   boards:
     index:
       title: '掲示板一覧'
-      no_result: '掲示板がありません'
+      no_result: '掲示板がありません。'
       new: '掲示板作成'
     new:
       title: '掲示板作成'

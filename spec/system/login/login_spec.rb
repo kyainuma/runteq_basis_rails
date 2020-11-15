@@ -7,22 +7,22 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
     describe 'ログイン' do
       context '認証情報が正しい場合' do
         it 'ログインできること' do
-          visit '/login'
+          visit login_path
           fill_in 'メールアドレス', with: user.email
           fill_in 'パスワード', with: '12345678'
           click_button 'ログイン'
-          expect(current_path).to eq '/boards'
+          expect(current_path).to eq boards_path
           expect(page).to have_content('ログインしました'), 'フラッシュメッセージ「ログインしました」が表示されていません'
         end
       end
 
       context 'PWに誤りがある場合' do
         it 'ログインできないこと' do
-          visit '/login'
+          visit login_path
           fill_in 'メールアドレス', with: user.email
           fill_in 'パスワード', with: '1234'
           click_button 'ログイン'
-          expect(current_path).to eq('/login'), 'ログイン失敗時にログイン画面に戻ってきていません'
+          expect(current_path).to eq login_path
           expect(page).to have_content('ログインに失敗しました'), 'フラッシュメッセージ「ログインに失敗しました」が表示されていません'
         end
       end
