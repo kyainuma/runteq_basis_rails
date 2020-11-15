@@ -173,5 +173,29 @@ RSpec.describe '掲示板', type: :system do
         end
       end
     end
+
+    describe '掲示板のブックマーク一覧' do
+      before { board }
+      context '1件もブックマークしていない場合' do
+        it '1件もない旨のメッセージが表示されること' do
+          login_as_general
+          visit boards_path
+          click_on 'ブックマーク一覧'
+          expect(current_path).to eq(bookmarks_boards_path), '課題で指定した形式のリンク先に遷移させてください'
+          expect(page).to have_content('ブックマーク中の掲示板がありません'), 'ブックマーク中の掲示板が一件もない場合、「ブックマーク中の掲示板がありません」というメッセージが表示されていません'
+        end
+      end
+
+      context 'ブックマークしている場合' do
+        it 'ブックマークした掲示板が表示されること', js: true do
+          login_as_general
+          visit boards_path
+          find("#js-bookmark-button-for-board-#{board.id}").click
+          click_on 'ブックマーク一覧'
+          expect(current_path).to eq(bookmarks_boards_path), '課題で指定した形式のリンク先に遷移させてください'
+          expect(page).to have_content board.title
+        end
+      end
+    end
   end
 end

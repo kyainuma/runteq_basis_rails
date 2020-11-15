@@ -11,6 +11,7 @@ ja:
       updated:  "%{item}を更新しました"
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
+      delete_confirm: '削除しますか？'
   time:
     formats:
       default: '%Y/%m/%d %H:%M'
@@ -42,7 +43,15 @@ ja:
       title: '掲示板詳細'
     edit:
       title: '掲示板編集'
+    bookmarks:
+      title: 'ブックマーク一覧'
+      no_result: 'ブックマーク中の掲示板がありません'
   comments:
     create:
       success: 'コメントを作成しました'
       fail: 'コメントを作成できませんでした'
+  bookmarks:
+    create:
+      success: 'ブックマークしました'
+    destroy:
+      success: 'ブックマークを外しました'
