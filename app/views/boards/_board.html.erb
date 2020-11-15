@@ -6,14 +6,15 @@
          <h4 class="card-title">
            <%= link_to board.title, board_path(board.id) %>
          </h4>
-         <%= render 'crud_menus', board: board if current_user.own?(board) %>
+         <% if current_user.own?(board) %>
+           <%= render 'crud_menus', board: board %>
+         <% else %>
+           <%= render 'bookmark_button', board: board  %>
+         <% end %>
          <ul class="list-inline">
            <li class="list-inline-item">
              <%= icon 'far', 'user' %>
              <%= board.user.decorate.full_name %>
-             <% unless current_user.own?(board) %>
-               <%= render 'bookmarks/bookmark_area', board: board %>
-             <% end %>
            </li>
            <li class="list-inline-item">
              <%= icon 'far', 'calendar' %>
