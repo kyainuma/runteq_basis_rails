@@ -1,1 +1,3 @@
 $('#js-table-comment').replaceWith("<%= j(render partial: 'comments/comments', locals: { comments: @comments }) %>");
+$("#error_explanation").replaceWith("<%= j(render partial: 'shared/error_messages', locals: { object: @comment }) %>");
+$('#comment_form')[0].reset();
