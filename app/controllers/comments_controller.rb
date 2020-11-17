@@ -3,27 +3,25 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    @board = Board.find(params[:board_id])
-    @comments = @board.comments.order(created_at: :desc)
+    # @board = Board.find(params[:board_id])
+    # @comments = @board.comments.order(created_at: :desc)
     @comment.save
-    # if @comment.save
-    #  redirect_to board_path(@comment.board), success: t('defaults.message.created', item: Comment.model_name.human)
-    # else
-    #  redirect_to board_path(@comment.board), danger: t('defaults.message.not_created', item: Comment.model_name.human)
-    # end
   end
 
   def destroy
     @comment = current_user.comments.find(params[:id])
-    @board = Board.find(@comment.board_id)
-    @comments = @board.comments.order(created_at: :desc)
+    # @board = Board.find(@comment.board_id)
+    # @comments = @board.comments.order(created_at: :desc)
     @comment.destroy!
   end
 
   def update
     @comment = current_user.comments.find(params[:id])
-    @comment.update!(comment_update_params)
-    render json: @comment
+    if @comment.update(comment_update_params)
+      render json: { comment: @comment }, status: :ok
+    else
+      render json: { comment: @comment, errors: { messages: @comment.errors.full_messages } }, status: :bad_request
+    end
   end
 
   private

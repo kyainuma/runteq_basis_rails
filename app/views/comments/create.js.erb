@@ -1,3 +1,7 @@
-$('#js-table-comment').replaceWith("<%= j(render partial: 'comments/comments', locals: { comments: @comments }) %>");
-$("#error_explanation").replaceWith("<%= j(render partial: 'shared/error_messages', locals: { object: @comment }) %>");
-$('#comment_form')[0].reset();
+$("#error_messages").remove() // エラーメッセージを消去
+<% if @comment.errors.present? %> // @comments内にエラーが有るかを判断
+  $("#new_comment").prepend("<%= j(render('shared/error_messages', object: @comment)) %>")  // エラーを表示
+<% else %>
+  $("#js-table-comment").prepend("<%= j(render('comments/comment', comment: @comment)) %>") // コメントを作成
+  $("#js-new-comment-body").val('') // フォーム内をクリア
+<% end %>
