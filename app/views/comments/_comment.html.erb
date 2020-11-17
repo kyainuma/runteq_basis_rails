@@ -24,7 +24,8 @@
         </li>
         <li class="list-inline-item">
           <%= link_to comment_path(comment), id: "button-delete-#{comment.id}",
-                                          class: 'js-edit-comment-button' "data-comment-id=#{comment.id}",
+                                          class: 'js-delete-comment-button',
+                                           data: "data-comment-id=#{comment.id}",
                                          method: :delete,
                                            data: { confirm: t('defaults.message.delete_confirm') },
                                          remote: true do %>

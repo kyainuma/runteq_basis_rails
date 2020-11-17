@@ -1,16 +1,16 @@
 class CommentsController < ApplicationController
-  #before_action :set_comments, only: %i[create destroy]
+  # before_action :set_comments, only: %i[create destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
     @board = Board.find(params[:board_id])
     @comments = @board.comments.order(created_at: :desc)
     @comment.save
-    #if @comment.save
+    # if @comment.save
     #  redirect_to board_path(@comment.board), success: t('defaults.message.created', item: Comment.model_name.human)
-    #else
+    # else
     #  redirect_to board_path(@comment.board), danger: t('defaults.message.not_created', item: Comment.model_name.human)
-    #end
+    # end
   end
 
   def destroy
