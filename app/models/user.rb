@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  mount_uploader :avatar, AvatarUploader
 
   has_many :boards, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -13,8 +14,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :last_name,  presence: true, length: { maximum: 255 }
   validates :first_name, presence: true, length: { maximum: 255 }
-
-  mount_uploader :avatar, AvatarUploader
 
   def own?(object)
     id == object.user_id
