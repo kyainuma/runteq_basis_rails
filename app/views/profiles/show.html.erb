@@ -1,4 +1,4 @@
-<% content_for(:title, @user) %>
+<% content_for(:title, t('.title')) %>                                                                                                                
 <div class="container pt-3">
   <div class="row">
     <div class="col-md-10 offset-md-1">
@@ -22,7 +22,11 @@
             <th scope="row">
               <span class="translation_missing">アバター</span>
             </th>
+            <% if @user.avatar? %>
               <td><%= image_tag @user.avatar.url, class:"rounded-circle", width:"50", height:"50" %></td>
+            <% else %>
+              <td><%= image_tag 'sample.jpg', class:"rounded-circle", width:"50", height:"50" %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>
