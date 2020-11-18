@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
-gem 'kaminari'
+gem 'ransack'
+
+gem 'kaminari', '1.1.1'
 
 gem 'carrierwave', '2.0.2'
 gem 'mini_magick'
