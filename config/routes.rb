@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
+  get 'profiles/edit'
   get 'bookmarks/create'
   get 'bookmarks/destroy'
   root 'static_pages#top'
@@ -15,4 +17,5 @@ Rails.application.routes.draw do
     end
   end
   resources :bookmarks, only: %i[create destroy]
+  resource :profile
 end

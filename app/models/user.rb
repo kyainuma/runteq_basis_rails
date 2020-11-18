@@ -14,6 +14,8 @@ class User < ApplicationRecord
   validates :last_name,  presence: true, length: { maximum: 255 }
   validates :first_name, presence: true, length: { maximum: 255 }
 
+  mount_uploader :avatar, AvatarUploader
+
   def own?(object)
     id == object.user_id
   end

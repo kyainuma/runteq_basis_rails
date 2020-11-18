@@ -4,6 +4,8 @@ ja:
     register: '登録'
     logout: 'ログアウト'
     post: '投稿'
+    search_word: '検索ワード'
+    edit: '更新する'
     message:
       require_login: 'ログインしてください'
       created: "%{item}を作成しました"
@@ -32,6 +34,11 @@ ja:
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトしました'
+  profiles:
+    show:
+      title: 'プロフィール'
+    edit:
+      title: 'プロフィール編集'
   boards:
     index:
       title: '掲示板一覧'

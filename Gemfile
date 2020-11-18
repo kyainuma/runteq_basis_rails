@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
-gem 'ransack'
+gem 'ransack', '2.3.0'
 
 gem 'kaminari', '1.1.1'
 
