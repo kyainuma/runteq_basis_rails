@@ -1,15 +1,9 @@
 class UserMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
   #   en.user_mailer.reset_password_email.subject
   #
-  def reset_password_email
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
-  end
 
   # reset_password_emailメソッドなので、reset_password_email.〇〇のビューがメールのフォーマットになる
   # コントローラの場合と同様、メイラーのメソッド内で定義されたインスタンス変数はメイラーのビューで使える。
