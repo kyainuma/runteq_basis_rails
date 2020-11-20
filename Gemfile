@@ -3,11 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
-gem 'config'
-
-group :development do
-  gem 'letter_opener_web', '~> 1.0'
-end
+gem 'config', '2.0.0'
 
 gem 'ransack', '2.3.0'
 
@@ -19,10 +15,6 @@ gem 'mini_magick'
 gem 'draper'
 
 gem 'rails-i18n', '~> 5.1.3'
-
-group :development, :test do
-  gem 'pry-byebug'
-end
 
 gem 'sorcery'
 
@@ -61,6 +53,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry-byebug'
   gem 'faker'
   gem 'factory_bot_rails'
   # 変更しないでください
@@ -79,6 +72,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :test do
