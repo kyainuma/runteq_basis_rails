@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_094512) do
+ActiveRecord::Schema.define(version: 2020_11_18_155511) do
 
   create_table "boards", force: :cascade do |t|
     t.string "title", null: false
@@ -51,7 +51,12 @@ ActiveRecord::Schema.define(version: 2020_11_18_094512) do
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "avatar"
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.integer "access_count_to_reset_password_page", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
 end
