@@ -18,10 +18,6 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update]
   resources :password_resets, only: %i[new create edit update]
 
-#  resources :admin do
-#    resources :dashboards, only: %i[index show], shallow: true
-#  end
-
   namespace :admin do
     get  'login'  => 'user_sessions#new'
     post  'login'  => 'user_sessions#create'
