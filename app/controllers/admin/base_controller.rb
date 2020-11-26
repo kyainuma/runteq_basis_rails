@@ -8,7 +8,7 @@ class Admin::BaseController < ApplicationController
       # redirect_to 'admin_dashboards_path'
       # redirect_to admin_login_path, success: t('.success')
     else
-      redirect_to root_path, success: t('.success')
+      redirect_to root_path, danger: t('.fall')
     end
   end
 end

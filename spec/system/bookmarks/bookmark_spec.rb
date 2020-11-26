@@ -7,7 +7,7 @@ RSpec.describe 'ブックマーク', type: :system do
 
   it 'ブックマークができること', js: true do
     login_as_general
-    visit boards_path
+    visit '/boards'
     find("#js-bookmark-button-for-board-#{board.id}").click
     # ボタンが切り替わること
     expect(page).to have_css("#js-bookmark-button-for-board-#{board.id}[data-method='delete']"), 'ブックマークボタンを押した後にボタンが切り替わっていません'
@@ -15,7 +15,7 @@ RSpec.describe 'ブックマーク', type: :system do
 
   it 'ブックマークを外せること', js: true do
     login_as_general
-    visit boards_path
+    visit '/boards'
     # ブックマークする
     find("#js-bookmark-button-for-board-#{board.id}").click
     # ブックマークを外す

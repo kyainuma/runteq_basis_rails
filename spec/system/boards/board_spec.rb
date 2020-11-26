@@ -8,8 +8,8 @@ RSpec.describe '掲示板', type: :system do
     describe '掲示板の一覧' do
       context 'ログインしていない場合' do
         it 'ログインページにリダイレクトされること' do
-          visit boards_path
-          expect(current_path).to eq login_path
+          visit '/boards'
+          expect(current_path).to eq('/login'), 'ログインページにリダイレクトされていません'
           expect(page).to have_content('ログインしてください'), 'フラッシュメッセージ「ログインしてください」が表示されていません'
         end
       end
@@ -19,14 +19,14 @@ RSpec.describe '掲示板', type: :system do
           login_as_general
           click_on('掲示板')
           click_on('掲示板一覧')
-          expect(current_path).to eq(boards_path), 'ヘッダーのリンクから掲示板一覧画面へ遷移できません'
+          expect(current_path).to eq('/boards'), 'ヘッダーのリンクから掲示板一覧画面へ遷移できません'
         end
 
         context '掲示板が一件もない場合' do
           it '何もない旨のメッセージが表示されること' do
             login_as_general
-            visit boards_path
-            expect(page).to have_content('掲示板がありません。'), '掲示板が一件もない場合、「掲示板がありません」というメッセージが表示されていません'
+            visit '/boards'
+            expect(page).to have_content('掲示板がありません'), '掲示板が一件もない場合、「掲示板がありません」というメッセージが表示されていません'
           end
         end
 
@@ -34,11 +34,10 @@ RSpec.describe '掲示板', type: :system do
           it '掲示板の一覧が表示されること' do
             board
             login_as_general
-            visit boards_path
+            visit '/boards'
             expect(page).to have_content(board.title), '掲示板一覧画面に掲示板のタイトルが表示されていません'
             expect(page).to have_content(board.user.decorate.full_name), '掲示板一覧画面に投稿者のフルネームが表示されていません'
             expect(page).to have_content(board.body), '掲示板一覧画面に掲示板の本文が表示されていません'
-            expect(page).to have_content(I18n.l(board.created_at, format: :long)), '掲示板一覧画面に掲示板の投稿日時が正しいフォーマットで表示されていません'
           end
 
           context '20件以下の場合' do
@@ -84,7 +83,6 @@ RSpec.describe '掲示板', type: :system do
           expect(page).to have_content(board.title), '掲示板一覧画面に掲示板のタイトルが表示されていません'
           expect(page).to have_content(board.user.decorate.full_name), '掲示板一覧画面に投稿者のフルネームが表示されていません'
           expect(page).to have_content(board.body), '掲示板一覧画面に掲示板の本文が表示されていません'
-          expect(page).to have_content(I18n.l(board.created_at, format: :long)), '掲示板一覧画面に掲示板の投稿日時が正しいフォーマットで表示されていません'
         end
       end
     end
@@ -92,8 +90,8 @@ RSpec.describe '掲示板', type: :system do
     describe '掲示板の作成' do
       context 'ログインしていない場合' do
         it 'ログインページにリダイレクトされること' do
-          visit new_board_path
-          expect(current_path).to eq login_path
+          visit '/boards/new'
+          expect(current_path).to eq('/login'), 'ログインしていない場合、掲示板作成画面にアクセスした際に、ログインページにリダイレクトされていません'
           expect(page).to have_content('ログインしてください'), 'フラッシュメッセージ「ログインしてください」が表示されていません'
         end
       end
@@ -111,7 +109,7 @@ RSpec.describe '掲示板', type: :system do
           file_path = Rails.root.join('spec', 'fixtures', 'example.jpg')
           attach_file "サムネイル", file_path
           click_button '登録する'
-          expect(current_path).to eq boards_path
+          expect(current_path).to eq('/boards'), '掲示板一覧画面に遷移していません'
           expect(page).to have_content('掲示板を作成しました'), 'フラッシュメッセージ「掲示板を作成しました」が表示されていません'
           expect(page).to have_content('テストタイトル'), '作成した掲示板のタイトルが表示されていません'
           expect(page).to have_content('テスト本文'), '作成した掲示板の本文が表示されていません'
@@ -123,9 +121,7 @@ RSpec.describe '掲示板', type: :system do
           attach_file "サムネイル", file_path
           click_button '登録する'
           expect(page).to have_content('掲示板を作成できませんでした'), 'フラッシュメッセージ「掲示板を作成できませんでした」が表示されていません'
-          expect(page).to have_field('タイトル', with: 'テストタイトル'), '入力したタイトルがフォームに残っていません'
           expect(page).to have_content('本文を入力してください'), 'エラーメッセージ「本文を入力してください」が表示されていません'
-          expect(page).to have_content('サムネイルは jpg, jpeg, gif, pngの形式でアップロードしてください'), 'エラーメッセージ「サムネイルは jpg, jpeg, gif, pngの形式でアップロードしてください」が表示されていません'
         end
       end
     end
@@ -135,7 +131,7 @@ RSpec.describe '掲示板', type: :system do
       context 'ログインしていない場合' do
         it 'ログインページにリダイレクトされること' do
           visit edit_board_path(board)
-          expect(current_path).to eq login_path
+          expect(current_path).to eq('/login'), 'ログインページにリダイレクトされていません'
           expect(page).to have_content 'ログインしてください'
         end
       end
@@ -153,8 +149,8 @@ RSpec.describe '掲示板', type: :system do
             click_button '更新する'
             expect(current_path).to eq board_path(board)
             expect(page).to have_content('掲示板を更新しました'), 'フラッシュメッセージ「掲示板を更新しました」が表示されていません'
-            expect(page).to have_content('テストタイトル'), '更新後のタイトルが表示されていません'
-            expect(page).to have_content('テスト本文'), '更新後の本文が表示されていません'
+            expect(page).to have_content('編集後テストタイトル'), '更新後のタイトルが表示されていません'
+            expect(page).to have_content('編集後テスト本文'), '更新後の本文が表示されていません'
           end
 
           it '掲示板の作成に失敗すること' do
@@ -180,9 +176,9 @@ RSpec.describe '掲示板', type: :system do
       context '自分の掲示板' do
         it '掲示板が削除できること', js: true do
           login_as_user user
-          visit boards_path
+          visit '/boards'
           page.accept_confirm { find("#button-delete-#{board.id}").click }
-          expect(current_path).to eq boards_path
+          expect(current_path).to eq('/boards'), '掲示板削除後に、掲示板の一覧ページに遷移していません'
           expect(page).to have_content('掲示板を削除しました'), 'フラッシュメッセージ「掲示板を削除しました」が表示されていません'
         end
       end
@@ -203,7 +199,7 @@ RSpec.describe '掲示板', type: :system do
           login_as_general
           visit boards_path
           click_on 'ブックマーク一覧'
-          expect(current_path).to eq bookmarks_boards_path
+          expect(current_path).to eq(bookmarks_boards_path), '課題で指定した形式のリンク先に遷移させてください'
           expect(page).to have_content('ブックマーク中の掲示板がありません'), 'ブックマーク中の掲示板が一件もない場合、「ブックマーク中の掲示板がありません」というメッセージが表示されていません'
         end
       end
@@ -214,7 +210,7 @@ RSpec.describe '掲示板', type: :system do
           visit boards_path
           find("#js-bookmark-button-for-board-#{board.id}").click
           click_on 'ブックマーク一覧'
-          expect(current_path).to eq bookmarks_boards_path
+          expect(current_path).to eq(bookmarks_boards_path), '課題で指定した形式のリンク先に遷移させてください'
           expect(page).to have_content board.title
         end
       end

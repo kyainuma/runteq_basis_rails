@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get  'login'  => 'user_sessions#new'
     post  'login'  => 'user_sessions#create'
-    get  'dashboards'  => 'dashboards#index'
+    post 'logout' => 'user_sessions#destroy'
+    root 'dashboards#index'
+    # get  'dashboards'  => 'dashboards#index'
   end
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?

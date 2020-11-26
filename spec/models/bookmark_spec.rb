@@ -14,7 +14,7 @@ RSpec.describe Bookmark, type: :model do
       bookmark = create(:bookmark)
       new_bookmark = build(:bookmark, user: bookmark.user, board: bookmark.board)
       new_bookmark.valid?
-      expect(new_bookmark.errors[:user_id]).to include('はすでに存在します')
+      expect(new_bookmark.errors[:user_id]).to include('はすでに存在します'), 'bookmarkとuserのユニークバリデーションが設定されていません'
     end
   end
 end

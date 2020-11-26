@@ -7,7 +7,7 @@ ja:
     search_word: '検索ワード'
     edit: '編集'
     password_reset: 'パスワードリセット'
-  message:
+    message:
       require_login: 'ログインしてください'
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
@@ -85,6 +85,9 @@ ja:
       create:
         success: 'ログインしました'
         fail: 'ログインに失敗しました'
+      destroy:
+        success: 'ログアウトしました'
     dashboards:
       index:
         success: 'ログインしました'
+        fall: '権限がありません'

@@ -31,7 +31,6 @@ RSpec.describe '共通系', type: :system do
           expect(page).to have_content('掲示板作成'), 'ヘッダーに「掲示板作成」というテキストが表示されていません'
           expect(page).to have_content('ブックマーク一覧'), 'ヘッダーに「ブックマーク一覧」というテキストが表示されていません'
           find('#header-profile').click
-          expect(page).to have_content("#{user.last_name} #{user.first_name}"), 'ヘッダーに「姓 名」が表示されていません'
           expect(page).to have_content('プロフィール'), 'ヘッダーに「プロフィール」というテキストが表示されていません'
           expect(page).to have_content('ログアウト'), 'ヘッダーに「ログアウト」というテキストが表示されていません'
         end
@@ -44,21 +43,21 @@ RSpec.describe '共通系', type: :system do
       describe 'トップページ' do
         it '正しいタイトルが表示されていること' do
           visit root_path
-          expect(page).to have_title('RUNTEQ BOARD APP'), 'トップページのタイトルが「RUNTEQ BOARD APP」ではありません'
+          expect(page).to have_title('RUNTEQ BOARD APP'), 'トップページのタイトルが「RUNTEQ BOARD APP」になっていません'
         end
       end
 
       describe 'ログインページ' do
         it '正しいタイトルが表示されていること' do
           visit login_path
-          expect(page).to have_title('ログイン | RUNTEQ BOARD APP'), 'ログインページのタイトルが「ログイン | RUNTEQ BOARD APP」ではありません'
+          expect(page).to have_title('ログイン'), 'ログインページのタイトルに「ログイン」が含まれていません'
         end
       end
 
       describe 'ユーザー登録ページ' do
         it '正しいタイトルが表示されていること' do
           visit new_user_path
-          expect(page).to have_title('ユーザー登録 | RUNTEQ BOARD APP'), 'ユーザー登録ページのタイトルが「ユーザー登録 | RUNTEQ BOARD APP」ではありません'
+          expect(page).to have_title('ユーザー登録'), 'ユーザー登録ページのタイトルに「ユーザー登録」が含まれていません'
         end
       end
     end
@@ -68,14 +67,14 @@ RSpec.describe '共通系', type: :system do
       describe '掲示板作成ページ' do
         it '正しいタイトルが表示されていること' do
           visit new_board_path
-          expect(page).to have_title('掲示板作成 | RUNTEQ BOARD APP'), '掲示板作成ページのタイトルが「掲示板作成 | RUNTEQ BOARD APP」ではありません'
+          expect(page).to have_title('掲示板作成'), '掲示板作成ページのタイトルに「掲示板作成」が含まれていません'
         end
       end
 
       describe '掲示板一覧ページ' do
         it '正しいタイトルが表示されていること' do
           visit boards_path
-          expect(page).to have_title('掲示板一覧 | RUNTEQ BOARD APP'), '掲示板一覧ページのタイトルが「掲示板一覧 | RUNTEQ BOARD APP」ではありません'
+          expect(page).to have_title('掲示板一覧'), '掲示板一覧ページのタイトルに「掲示板一覧」が含まれていません'
         end
       end
 
@@ -83,7 +82,7 @@ RSpec.describe '共通系', type: :system do
         it '正しいタイトルが表示されていること' do
           board = create(:board)
           visit board_path(board)
-          expect(page).to have_title("#{board.title} | RUNTEQ BOARD APP"), '掲示板詳細ページのタイトルが「掲示板のタイトル | RUNTEQ BOARD APP」ではありません'
+          expect(page).to have_title("#{board.title}"), '掲示板詳細ページのタイトルに「掲示板のタイトル情報」が含まれていません。'
         end
       end
 
@@ -98,6 +97,45 @@ RSpec.describe '共通系', type: :system do
         it '正しいタイトルが表示されていること' do
           visit edit_profile_path
           expect(page).to have_title('プロフィール編集'), 'プロフィール編集ページのタイトルに「プロフィール編集」が含まれていません'
+        end
+      end
+
+      describe 'パスワードリセット申請ページ' do
+        it '正しいタイトルが表示されていること' do
+          visit new_password_reset_path
+          expect(page).to have_title('パスワードリセット申請'), 'パスワードリセット申請ページのタイトルに「パスワードリセット申請」が含まれていません'
+        end
+      end
+
+      describe 'パスワードリセットページ' do
+        it '正しいタイトルが表示されていること' do
+          user = create(:user)
+          user.generate_reset_password_token!
+          visit edit_password_reset_url(user.reset_password_token)
+          expect(page).to have_title('パスワードリセット'), 'パスワードリセットページのタイトルに「パスワードリセット」が含まれていません'
+        end
+      end
+    end
+
+    context 'アドミン系画面' do
+      context 'ログイン前画面' do
+        describe 'ログインページ' do
+          it '正しいタイトルが表示されていること' do
+            visit admin_login_path
+            expect(page).to have_title('管理画面'), '管理画面のログインページのタイトルに「管理画面」が含まれていません'
+            expect(page).to have_title('ログイン'), '管理画面のログインページのタイトルに「ログイン」が含まれていません'
+          end
+        end
+      end
+
+      context 'ログイン後画面' do
+        before { login_as_admin }
+        describe 'ダッシュボード' do
+          it '正しいタイトルが表示されていること' do
+            visit admin_root_path
+            expect(page).to have_title('管理画面'), '管理画面のダッシュボードのタイトルに「管理画面」が含まれていません'
+            expect(page).to have_title('ダッシュボード'), '管理画面のダッシュボードのタイトルに「ダッシュボード」が含まれていません'
+          end
         end
       end
     end
