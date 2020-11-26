@@ -1,7 +1,11 @@
 module ApplicationHelper
-  def page_title(page_title = '')
+  def page_title(page_title = '', admin = '')
     base_title = 'RUNTEQ BOARD APP'
 
-    page_title.empty? ? base_title : page_title + ' | ' + base_title
+    if page_title.empty?
+      base_title
+    else
+      page_title + ' | ' + base_title + admin
+    end
   end
 end

@@ -23,8 +23,6 @@ Rails.application.routes.draw do
 #  end
 
   namespace :admin do
-    get  'login'  => 'user_sessions#new'
-    post  'login'  => 'user_sessions#create'
     get  'dashboards'  => 'dashboards#index'
   end
 

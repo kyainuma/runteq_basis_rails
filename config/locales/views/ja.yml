@@ -74,3 +74,17 @@ ja:
     update:
       success: 'パスワードを変更しました'
       fail: 'パスワードの変更に失敗しました'
+  admin:
+    admin:
+      title: 'ダッシュボード'
+      admin_title: '(管理画面)'
+    admin_login:
+      title: 'ログイン'
+      admin_title: '(管理画面)'
+    user_sessions:
+      create:
+        success: 'ログインしました'
+        fail: 'ログインに失敗しました'
+    dashboards:
+      index:
+        success: 'ログインしました'
