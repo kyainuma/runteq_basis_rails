@@ -1,7 +1,10 @@
 class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: %i[show edit update destroy]
+
   def index
-    @users = User.all
+    # @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
   end
 
   def show
