@@ -1,14 +1,15 @@
 class Admin::BaseController < ApplicationController
-  skip_before_action :require_login
   before_action :check_admin
+  layout 'admin/layouts/application'
+
+  private
+ 
+  def not_authenticated
+    flash[:warning] = t('defaults.message.require_login')
+    redirect_to admin_login_path
+  end
 
   def check_admin
-    if current_user.admin?
-      render 'admin/admin'
-      # redirect_to 'admin_dashboards_path'
-      # redirect_to admin_login_path, success: t('.success')
-    else
-      redirect_to root_path, danger: t('.fall')
-    end
+    redirect_to root_path, warning: t('defaults.message.not_authorized') unless current_user.admin?
   end
 end

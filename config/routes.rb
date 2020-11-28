@@ -19,10 +19,11 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
 
   namespace :admin do
-    get 'login' => 'user_sessions#new'
-    post 'login' => 'user_sessions#create'
-    post 'logout' => 'user_sessions#destroy'
-    root 'dashboards#index'
+    root to: 'dashboards#index'
+    get 'login', to: 'user_sessions#new'
+    post 'login', to: 'user_sessions#create'
+    delete 'logout', to: 'user_sessions#destroy'
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?

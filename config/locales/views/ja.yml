@@ -1,4 +1,9 @@
 ja:
+  enums:
+    user:
+      role:
+        general: '一般'
+        admin: '管理者'
   defaults:
     login: 'ログイン'
     register: '登録'
@@ -6,6 +11,7 @@ ja:
     post: '投稿'
     search_word: '検索ワード'
     edit: '編集'
+    delete: '削除'
     password_reset: 'パスワードリセット'
     message:
       require_login: 'ログインしてください'
@@ -15,6 +21,7 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       delete_confirm: '削除しますか？'
+      not_authorized: '権限がありません'
   time:
     formats:
       default: '%Y/%m/%d %H:%M'
@@ -75,19 +82,21 @@ ja:
       success: 'パスワードを変更しました'
       fail: 'パスワードの変更に失敗しました'
   admin:
-    admin:
-      title: 'ダッシュボード'
-      admin_title: '(管理画面)'
-    admin_login:
-      title: 'ログイン'
-      admin_title: '(管理画面)'
     user_sessions:
+      new:
+        title: 'ログイン'
       create:
         success: 'ログインしました'
         fail: 'ログインに失敗しました'
       destroy:
         success: 'ログアウトしました'
+    users:
+      index:
+        title: 'ユーザー一覧'
+      show:
+        title: 'ユーザー詳細'
+      edit:
+        title: 'ユーザー編集'
     dashboards:
       index:
-        success: 'ログインしました'
-        fall: '権限がありません'
+        title: 'ダッシュボード'

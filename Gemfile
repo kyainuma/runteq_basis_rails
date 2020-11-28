@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
+gem 'enum_help'
+
 gem 'config', '2.0.0'
 
 gem 'ransack', '2.3.0'

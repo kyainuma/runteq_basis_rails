@@ -1,5 +1,3 @@
 class Admin::DashboardsController < Admin::BaseController
-  def index
-    render 'admin/admin'
-  end
+  def index; end
 end

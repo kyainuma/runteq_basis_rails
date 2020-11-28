@@ -1,0 +1,15 @@
+<tbody>
+  <tr>
+    <th scope="row"><%= user.id %></th>
+    <th scope="row"><%= link_to user.decorate.full_name, admin_user_path(user) %></th>
+    <th scope="row"><%= user.role_i18n %></th>
+    <th scope="row"><%= l user.created_at, format: :long %></th>
+    <th scope="row">
+      <%= link_to t('defaults.edit'), edit_admin_user_path(user), class:"btn btn-success" %>
+      <%= link_to t('defaults.delete'), admin_user_path(user),
+                                        method: :delete,
+                                        data: { confirm: t('defaults.message.delete_confirm') },
+                                        class: "btn btn-danger" %>
+    </th>
+  </tr>
+</tbody>
