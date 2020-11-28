@@ -8,6 +8,22 @@ class Admin::BoardsController < Admin::BaseController
 
   def show; end
 
+  def edit; end
+
+  def update
+    if @board.update(board_params)
+      redirect_to admin_board_path(@board), success: t('defaults.message.updated', item: Board.model_name.human)
+    else
+      flash.now[:danger] = t('defaults.message.not_updated', item: Board.model_name.human)
+      render :edit
+    end
+  end
+
+  def destroy
+    @board.destroy!
+    redirect_to admin_boards_path, success: t('defaults.message.deleted', item: Board.model_name.human)
+  end
+
   private
 
   def board_params
