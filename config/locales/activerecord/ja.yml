@@ -19,5 +19,7 @@ ja:
         title: 'タイトル'
         body: '本文'
         board_image: 'サムネイル'
+        created_at: '作成日時'
+        created_user: '作成者'
       comment:
         body: 'コメント'

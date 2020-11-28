@@ -1,9 +1,12 @@
-class Admin::BoardsController < ApplicationController
+class Admin::BoardsController < Admin::BaseController
+  before_action :set_board, only: %i[show edit update destroy]
 
   def index
     @q = Board.ransack(params[:q])
     @boards = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
   end
+
+  def show; end
 
   private
 
@@ -12,7 +15,7 @@ class Admin::BoardsController < ApplicationController
   end
 
   def set_board
-    @board = current_user.boards.find(params[:id])
+    @board = Board.find(params[:id])
   end
 
 end

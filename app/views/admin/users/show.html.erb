@@ -31,6 +31,7 @@
         <tr>
           <th scope="row"><%= t(User.human_attribute_name(:created_at)) %></th>
           <td><%= l @user.created_at, format: :long %></td>
+        </tr>
       </table>
       <%= link_to t('defaults.edit'), edit_admin_user_path(@user), class:"btn btn-success" %>
     </div>

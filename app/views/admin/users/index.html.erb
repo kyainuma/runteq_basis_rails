@@ -7,10 +7,10 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">氏名</th>
-            <th scope="col">権限</th>
-            <th scope="col">作成日時</th>
+            <th scope="col">id</th>
+            <th scope="col"><%= t(User.human_attribute_name(:full_name)) %></th>
+            <th scope="col"><%= t(User.human_attribute_name(:role)) %></th>
+            <th scope="col"><%= t(User.human_attribute_name(:created_at)) %></th>
             <th scope="col"></th>
           </tr>
         </thead>

@@ -1,0 +1,35 @@
+<% content_for(:title, t('.title')) %>                                                                                                                
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1 class="float-left mb-5"><%= t('.title') %></h1>
+      <table class="table">
+        <tr>
+          <th scope="row">id</th>
+          <td><%= @board.id %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= t(Board.human_attribute_name(:title)) %></th>
+          <td><%= @board.title %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= t(Board.human_attribute_name(:created_user)) %></th>
+          <td><%= @board.user.decorate.full_name %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= t(Board.human_attribute_name(:body)) %></th>
+          <td><%= @board.body %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= t(Board.human_attribute_name(:board_image)) %></th>
+          <td><%= image_tag @board.board_image_url, class: 'card-img-top img-fluid', size: '300 x 200' %></td>
+        </tr>
+        <tr>
+          <th scope="row"><%= t(Board.human_attribute_name(:created_at)) %></th>
+          <td><%= l @board.created_at, format: :long %></td>
+        </tr>
+      </table>
+      <%= link_to t('defaults.edit'), edit_admin_board_path(@board), class:"btn btn-success" %>
+    </div>
+  </div>
+</div>
