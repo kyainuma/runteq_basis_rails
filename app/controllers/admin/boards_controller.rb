@@ -2,8 +2,14 @@ class Admin::BoardsController < Admin::BaseController
   before_action :set_board, only: %i[show edit update destroy]
 
   def index
-    @q = Board.ransack(params[:q])
-    @boards = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    search_options = {
+      created_after: params[:created_after],
+      created_before: params[:created_before]
+    }
+    # @q = Board.ransack(params[:q])
+    @q = Board.search(params[:q], search_options)
+    @boards = @q.result
+    # @boards = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def show; end
