@@ -6,10 +6,8 @@ class Admin::BoardsController < Admin::BaseController
       created_after: params[:created_after],
       created_before: params[:created_before]
     }
-    # @q = Board.ransack(params[:q])
-    @q = Board.search(params[:q], search_options)
-    @boards = @q.result
-    # @boards = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    @q = Board.ransack(params[:q])
+    @boards = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def show; end
