@@ -2,6 +2,8 @@
 <div class="container">
   <h1><%= t '.title' %></h1>
   <!-- User一覧 -->
+  <!-- 検索フォーム -->
+  <%= render 'search_form', url: admin_users_path %>
   <div class="row">
     <div class="col-12">
       <table class="table">
