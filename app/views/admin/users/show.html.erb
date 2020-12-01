@@ -13,12 +13,8 @@
           <td><%= @user.email %></td>
         </tr>
         <tr>
-          <th scope="row"><%= t(User.human_attribute_name(:last_name)) %></th>
-          <td><%= @user.last_name %></td>
-        </tr>
-        <tr>
-          <th scope="row"><%= t(User.human_attribute_name(:first_name)) %></th>
-          <td><%= @user.first_name %></td>
+          <th scope="row"><%= t(User.human_attribute_name(:full_name)) %></th>
+          <td><%= @user.decorate.full_name %></td>
         </tr>
         <tr>
           <th scope="row"><%= t(User.human_attribute_name(:avatar)) %></th>
@@ -34,6 +30,10 @@
         </tr>
       </table>
       <%= link_to t('defaults.edit'), edit_admin_user_path(@user), class:"btn btn-success" %>
+      <%= link_to t('defaults.delete'), admin_user_path(user),
+                                        method: :delete,
+                                        data: { confirm: t('defaults.message.delete_confirm') },
+                                        class: "btn btn-danger" %>
     </div>
   </div>
 </div>
