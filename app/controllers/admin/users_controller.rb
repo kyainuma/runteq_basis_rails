@@ -6,11 +6,9 @@ class Admin::UsersController < Admin::BaseController
     @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -35,5 +33,4 @@ class Admin::UsersController < Admin::BaseController
   def user_params
     params.require(:user).permit(:last_name, :first_name, :email, :avatar, :role)
   end
-
 end
