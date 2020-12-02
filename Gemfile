@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
+gem 'exception_notification'
+gem 'slack-notifier'
+
 gem 'active_link_to'
 
 gem 'enum_help'
