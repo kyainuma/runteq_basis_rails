@@ -8,15 +8,15 @@ class ApplicationController < ActionController::Base
   end
 
   def error_404
-    render file: "#{Rails.root}/public/404.html",
-           layout: false, status: 404
+    render file: Rails.root.join('public/404.html'),
+           status: 404, layout: false
   end
 
   def error_500(error)
     logger.error error
     logger.error error.backtrace.join("\n\n")
-    render file: "#{Rails.root}/public/500.html",
-           layout: false, status: 500
+    render file: Rails.root.join('public/500.html'),
+           status: 500, layout: false
   end
 
   private

@@ -1,7 +1,4 @@
 require 'exception_notification/rails'
-
-
-
 ExceptionNotification.configure do |config|
   # Ignore additional exception types.
   # ActiveRecord::RecordNotFound, Mongoid::Errors::DocumentNotFound, AbstractController::ActionNotFound and ActionController::RoutingError are already added.
@@ -25,15 +22,15 @@ ExceptionNotification.configure do |config|
   }
 
   # 特定の環境下のみで通知
-  config.ignore_if do |exception, options|
+  config.ignore_if do
     !Rails.env.production?
   end
 
   # Email notifier sends notifications by email.
   config.add_notifier :email, {
     email_prefix: '[ERROR] ',
-    sender_address: %{"Notifier" <notifier@example.com>},
-    exception_recipients: %w{exceptions@example.com}
+    sender_address: %("Notifier" <notifier@example.com>),
+    exception_recipients: %w(exceptions@example.com)
   }
 
   # Campfire notifier sends notifications to your Campfire room. Requires 'tinder' gem.
