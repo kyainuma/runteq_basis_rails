@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-#  get '*path', to: 'application#error_500'
-#  get '*path', to: 'application#error_404'
+  # get '*path', to: 'application#error_500'
+  # get '*path', to: 'application#error_404'
 
   get 'bookmarks/create'
   get 'bookmarks/destroy'
