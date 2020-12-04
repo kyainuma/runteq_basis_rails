@@ -17,8 +17,7 @@ ExceptionNotification.configure do |config|
 
   # slack通知
   config.add_notifier :slack,
-    webhook_url: Rails.application.credentials.secret_url, channel: '#基礎編通知'
-  
+                      webhook_url: Rails.application.credentials.secret_url, channel: '#基礎編通知'
 
   # 特定の環境下のみで通知
   config.ignore_if do
@@ -26,7 +25,7 @@ ExceptionNotification.configure do |config|
   end
 
   # Email notifier sends notifications by email.
-  config.add_notifier :email, email_prefix: '[ERROR] ', sender_address: %["Notifier" <notifier@example.com>], exception_recipients: %w[exceptions@example.com]
+  config.add_notifier :email, email_prefix: '[ERROR] ', sender_address: %("Notifier" <notifier@example.com>), exception_recipients: %w[exceptions@example.com]
 
   # Campfire notifier sends notifications to your Campfire room. Requires 'tinder' gem.
   # config.add_notifier :campfire, {
